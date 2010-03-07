@@ -1,0 +1,39 @@
+<project name="IridiumFlares" default="jar" basedir=".">
+  <property name="build" location="build"/>
+
+  <path id="j3d">
+    <path>
+      <pathelement location="vecmath.jar"/>
+      <pathelement location="j3dutils.jar"/>
+      <pathelement location="j3dcore.jar"/>
+      <pathelement location="${build}/i18n"/>
+    </path>
+  </path>
+
+  <target name="init">
+    <tstamp/>
+    <mkdir dir="${build}"/>
+    <mkdir dir="${build}/app"/>
+    <mkdir dir="${build}/app/META-INF"/>
+    <mkdir dir="${build}/i18n"/>
+    <mkdir dir="${build}/res"/>
+  </target>
+
+  <target name="compile" depends="init">
+    <javac srcdir="main/java/" destdir="${build}/i18n"/>
+    <javac srcdir="." destdir="${build}/app" debug="no" optimize="yes">
+      <classpath refid="j3d"/>
+      <include name="iridiumflares/**/*.java"/>
+    </javac>
+    <copy file="resources/splash.png" todir="${build}/app" />
+    <copy todir="${build}/resources">
+      <fileset dir="resources"/>
+    </copy>
+  </target>
+
+  <target name="jar" depends="compile">
+    <jar jarfile="internationalization.jar" basedir="${build}/i18n"/>
+    <jar jarfile="iridiumflares.jar" basedir="${build}/app"/>
+    <jar jarfile="resources.jar" basedir="${build}/resources"/>
+  </target>
+</project>
