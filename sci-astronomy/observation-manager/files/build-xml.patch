@@ -1,0 +1,15 @@
+--- build.xml.orig	2009-11-08 17:32:30.000000000 +0600
++++ build.xml	2010-03-09 23:16:50.000000000 +0600
+@@ -43,10 +43,10 @@
+   	<mkdir dir="${path_gen}"/>
+   	<mkdir dir="${path_bin}"/>
+   	<copy todir="${path_lib}">
+-	    <fileset dir="${basedir}/../api/gen/">
++	    <fileset dir="${basedir}/gen/">
+ 	      <include name="**/*.jar"/>
+ 	    </fileset>
+-	    <fileset dir="${basedir}/../api/lib/">
++	    <fileset dir="${basedir}/lib/">
+ 	      <include name="**/*.jar"/>
+ 	    </fileset>	    
+         </copy>
