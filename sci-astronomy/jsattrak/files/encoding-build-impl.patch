@@ -1,0 +1,10 @@
+--- JSatTrak-4.1-src/JSatTrak/nbproject/build-impl.xml	2009-07-08 14:46:22.000000000 +0700
++++ JSatTrak-4.1-src/JSatTrak/nbproject/build-impl.xml	2010-03-10 21:54:46.000000000 +0600
+@@ -103,6 +103,6 @@
+         <property name="javac.debug" value="true"/>
+         <property name="javadoc.preview" value="true"/>
+         <property name="application.args" value=""/>
+-        <property name="source.encoding" value="${file.encoding}"/>
++        <property name="source.encoding" value="iso-8859-1"/>
+         <condition property="javadoc.encoding.used" value="${javadoc.encoding}">
+             <and>
