@@ -8,9 +8,9 @@ inherit eutils java-pkg-2 java-ant-2
 
 MY_PN="IridiumFlares"
 
-DESCRIPTION="Iridium flares prediction software."
+DESCRIPTION="Iridium flares prediction software"
 HOMEPAGE="http://iridiumflares.sourceforge.net/"
-SRC_URI="mirror://sourceforge/${PN}/iridiumflares-src/${PV}/${MY_PN}-${PV}.src.zip"
+SRC_URI="mirror://sourceforge/${PN}/${PN}-src/${PV}/${MY_PN}-${PV}.src.zip"
 LICENSE="GPL"
 IUSE=""
 SLOT="0"
@@ -27,8 +27,11 @@ S=${WORKDIR}
 src_unpack () {
 	unpack "${A}"
 	cd "${S}"
-	cp "${FILESDIR}"/build-1.3.xml build.xml
-	rm -rf iridiumflares/tests/
+	cp "${FILESDIR}"/build-${PV}.xml build.xml || die "Copying build.xml failed."
+}
+
+src_prepare () {
+	rm -rf "${PN}/tests/"
 	java-pkg_jar-from sun-java3d-bin vecmath.jar
 }
 
