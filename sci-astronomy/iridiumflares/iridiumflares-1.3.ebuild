@@ -22,10 +22,6 @@ DEPEND="app-arch/unzip
 RDEPEND=">=virtual/jre-1.4
 	dev-java/sun-java3d-bin"
 
-# j3dcore.jar
-# j3dutils.jar
-# vecmath.jar
-
 S=${WORKDIR}
 
 src_unpack () {
