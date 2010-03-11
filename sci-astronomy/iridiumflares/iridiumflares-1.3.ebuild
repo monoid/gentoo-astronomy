@@ -25,7 +25,6 @@ RDEPEND=">=virtual/jre-1.4
 S=${WORKDIR}
 
 src_prepare () {
-	cd "${S}"
 	cp "${FILESDIR}"/build-${PV}.xml build.xml || die "Copying build.xml failed."
 	rm -rf "${PN}/tests/"
 	java-pkg_jar-from sun-java3d-bin vecmath.jar
