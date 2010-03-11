@@ -34,4 +34,5 @@ src_prepare () {
 src_install () {
 	java-pkg_dojar internationalization.jar iridiumflares.jar resources.jar
 	java-pkg_dolauncher "${MY_PN}" --main iridiumflares.Main
+	dodoc Author Changelog Install
 }
