@@ -1,0 +1,10 @@
+--- build.xml~	2010-03-10 23:47:47.000000000 +0600
++++ build.xml	2010-03-10 23:40:27.000000000 +0600
+@@ -44,6 +44,7 @@
+         <mkdir dir="${worldwind.classes.dir}"/>
+         <javac destdir="${worldwind.classes.dir}"
+                fork="true"
++               encoding="iso8859-1"
+                memoryMaximumSize="512m"
+                source="${worldwind.jdk.version}"
+                target="${worldwind.jdk.version}">

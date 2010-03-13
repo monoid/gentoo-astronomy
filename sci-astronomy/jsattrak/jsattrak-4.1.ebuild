@@ -21,7 +21,8 @@ COMMON_DEPS="dev-java/jogl
 			 dev-java/jmf-bin
 			 dev-java/xstream
 			 >=dev-java/jgoodies-looks-2
-			 dev-java/swing-layout"
+			 dev-java/swing-layout
+			 =dev-java/worldwind-0.6.134.11486"
 
 DEPEND="app-arch/unzip
 		>=virtual/jdk-1.6
@@ -42,16 +43,17 @@ src_unpack () {
 		   java-pkg_jar-from bsh
 		   java-pkg_jar-from jgoodies-looks-2.0
 		   java-pkg_jar-from swing-layout-1
+		   java-pkg_jar-from worldwind-0.6.134
 }
 
 src_install () {
 			java-pkg_dojar dist/JSatTrak.jar
 			java-pkg_dojar Required_Libraries/substance/substance.jar
-			java-pkg_dojar Required_Libraries/worldwind/worldwind.jar
+# 			java-pkg_dojar Required_Libraries/worldwind/worldwind.jar
 			ewarn
 			ewarn "  jsattrak ebuild uses bundled binary substance.jar,"
 			ewarn "  a BSD-licensed LAF theme from https://substance.dev.java.net/"
-			ewarn "  Bundled NASA WorldWind Java SDK is also used until some bugs resoved."
+# 			ewarn "  Bundled NASA WorldWind Java SDK is also used until some bugs resoved."
 			ewarn
 			java-pkg_dolauncher ${MY_PN} --main jsattrak.gui.JSatTrak
 }
