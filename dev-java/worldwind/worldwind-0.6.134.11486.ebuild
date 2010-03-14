@@ -10,7 +10,7 @@ DESCRIPTION="NASA WorldWind Java SDK"
 HOMEPAGE="http://worldwind.arc.nasa.gov/java/"
 SRC_URI="http://builds.worldwind.arc.nasa.gov/releases/${PN}-${PV}.zip"
 LICENSE="NASAWorldWind"
-IUSE=""
+IUSE="doc"
 SLOT="0.6.134"
 KEYWORDS="~amd64 ~x86"
 
@@ -24,15 +24,17 @@ RDEPEND=">=virtual/jre-1.5
 
 S="${WORKDIR}"
 EANT_BUILD_TARGET="worldwind.jarfile"
+EANT_DOC_TARGET="javadocs"
 
-src_unpack () {
-		   unpack ${A}
-		   cd ${S}
-		   epatch "${FILESDIR}/encoding-build.patch"
-		   java-pkg_jar-from jogl
-		   java-pkg_jar-from gluegen
+src_prepare () {
+	epatch "${FILESDIR}/encoding-build.patch"
+	epatch "${FILESDIR}/encoding-worldwind-build.patch"
+	java-pkg_jar-from jogl
+	java-pkg_jar-from gluegen
 }
 
 src_install () {
-			java-pkg_dojar worldwind.jar
+	java-pkg_dojar worldwind.jar
+	dodoc worldwind-nosa-1.3.html
+	use doc && java-pkg_dojavadoc doc
 }
