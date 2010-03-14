@@ -22,6 +22,7 @@ COMMON_DEPS="dev-java/jogl
 			 dev-java/xstream
 			 >=dev-java/jgoodies-looks-2
 			 dev-java/swing-layout
+			 =dev-java/swingx-0.9.5
 			 =dev-java/worldwind-0.6.134.11486"
 
 DEPEND="app-arch/unzip
@@ -32,28 +33,31 @@ RDEPEND=">=virtual/jre-1.6
 
 S="${WORKDIR}/${MY_PN}-${PV}-src/JSatTrak"
 
-src_unpack () {
-		   unpack ${A}
-		   cd ${S}
+src_prepare () {
 		   epatch "${FILESDIR}/encoding-build-impl.patch"
-		   java-pkg_jar-from jogl
-		   java-pkg_jar-from jama
-		   java-pkg_jar-from jmf-bin
-		   java-pkg_jar-from xstream
+		   epatch "${FILESDIR}/project-properties.patch"
+		   rm -rf Required_Libraries/{Beanshell,Jama,Java_Media_Framework,JGoodies-Looks,JOGL,Netscape_JavaScript,Swing\ Layout\ Extensions,SwingX,worldwind,xstream}
 		   java-pkg_jar-from bsh
+		   java-pkg_jar-from jama
 		   java-pkg_jar-from jgoodies-looks-2.0
+		   java-pkg_jar-from jmf-bin
+		   java-pkg_jar-from jogl
 		   java-pkg_jar-from swing-layout-1
+		   java-pkg_jar-from swingx-0.9
 		   java-pkg_jar-from worldwind-0.6.134
+		   java-pkg_jar-from xstream
 }
 
 src_install () {
 			java-pkg_dojar dist/JSatTrak.jar
 			java-pkg_dojar Required_Libraries/substance/substance.jar
-# 			java-pkg_dojar Required_Libraries/worldwind/worldwind.jar
+			java-pkg_dojar Required_Libraries/substance/substance-swingx.jar
+			java-pkg_dojar Required_Libraries/JOGLUTILS/JOGLUTILS.jar
 			ewarn
 			ewarn "  jsattrak ebuild uses bundled binary substance.jar,"
-			ewarn "  a BSD-licensed LAF theme from https://substance.dev.java.net/"
-# 			ewarn "  Bundled NASA WorldWind Java SDK is also used until some bugs resoved."
+			ewarn "  and and substance-swingx.jar, a BSD-licensed LAF theme"
+			ewarn "  from https://substance.dev.java.net/"
+			ewarn "  and JOGLUTILS.jar from https://joglutils.dev.java.net/"
 			ewarn
 			java-pkg_dolauncher ${MY_PN} --main jsattrak.gui.JSatTrak
 }

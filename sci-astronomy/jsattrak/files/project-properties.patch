@@ -1,0 +1,34 @@
+--- JSatTrak-4.1-src/JSatTrak/nbproject/project.properties	2009-07-08 14:46:22.000000000 +0700
++++ project.properties	2010-03-14 19:40:44.000000000 +0600
+@@ -20,21 +20,21 @@
+ dist.jar=${dist.dir}/JSatTrak.jar
+ dist.javadoc.dir=${dist.dir}/javadoc
+ excludes=
+-file.reference.bsh-2.0b4_seg.jar=Required_Libraries/Beanshell/bsh-2.0b4_seg.jar
+-file.reference.gluegen-rt.jar=Required_Libraries/JOGL/gluegen-rt.jar
+-file.reference.Jama-1.0.2.jar=Required_Libraries/Jama/Jama-1.0.2.jar
+-file.reference.jmf.jar=Required_Libraries/Java_Media_Framework/jmf.jar
+-file.reference.jogl.jar=Required_Libraries/JOGL/jogl.jar
++file.reference.bsh-2.0b4_seg.jar=bsh.jar
++file.reference.gluegen-rt.jar=gluegen-rt.jar
++file.reference.Jama-1.0.2.jar=Jama.jar
++file.reference.jmf.jar=jmf.jar
++file.reference.jogl.jar=jogl.jar
+ file.reference.JOGLUTILS.jar=Required_Libraries/JOGLUTILS/JOGLUTILS.jar
+-file.reference.looks-2.2.1.jar=Required_Libraries/JGoodies-Looks/looks-2.2.1.jar
++file.reference.looks-2.2.1.jar=looks.jar
+ file.reference.plugin.jar=Required_Libraries/Netscape_JavaScript/plugin.jar
+ file.reference.substance-swingx.jar=Required_Libraries/substance/substance-swingx.jar
+ file.reference.substance.jar=Required_Libraries/substance/substance.jar
+-file.reference.swing-layout-1.0.3.jar=Required_Libraries/Swing Layout Extensions/swing-layout-1.0.3.jar
+-file.reference.swingx-0.9.4.jar=Required_Libraries/SwingX/swingx-0.9.4.jar
+-file.reference.worldwind.jar=Required_Libraries/worldwind/worldwind.jar
++file.reference.swing-layout-1.0.3.jar=swing-layout.jar
++file.reference.swingx-0.9.4.jar=swingx.jar
++file.reference.worldwind.jar=worldwind.jar
+ file.reference.xpp3_min-1.1.4c.jar=Required_Libraries/xstream/xpp3_min-1.1.4c.jar
+-file.reference.xstream-1.3.jar=Required_Libraries/xstream/xstream-1.3.jar
++file.reference.xstream-1.3.jar=xstream.jar
+ includes=**
+ jar.compress=false
+ javac.classpath=\
