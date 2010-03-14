@@ -8,9 +8,9 @@ inherit eutils java-pkg-2 java-ant-2
 
 MY_PN="JSatTrak"
 
-DESCRIPTION="Satellite Tracker by Shawn Gano."
+DESCRIPTION="Satellite Tracker by Shawn Gano"
 HOMEPAGE="http://www.gano.name/shawn/JSatTrak/index.html"
-SRC_URI="http://www.gano.name/shawn/JSatTrak/src/${MY_PN}-${PV}-src.zip"
+SRC_URI="http://www.gano.name/shawn/${MY_PN}/src/${MY_PN}-${PV}-src.zip"
 LICENSE="LGPL-3"
 IUSE=""
 SLOT="0"
@@ -31,33 +31,29 @@ DEPEND="app-arch/unzip
 RDEPEND=">=virtual/jre-1.6
 		 ${COMMON_DEPS}"
 
-S="${WORKDIR}/${MY_PN}-${PV}-src/JSatTrak"
+S="${WORKDIR}/${MY_PN}-${PV}-src/${MY_PN}"
 
 src_prepare () {
-		   epatch "${FILESDIR}/encoding-build-impl.patch"
-		   epatch "${FILESDIR}/project-properties.patch"
-		   rm -rf Required_Libraries/{Beanshell,Jama,Java_Media_Framework,JGoodies-Looks,JOGL,Netscape_JavaScript,Swing\ Layout\ Extensions,SwingX,worldwind,xstream}
-		   java-pkg_jar-from bsh
-		   java-pkg_jar-from jama
-		   java-pkg_jar-from jgoodies-looks-2.0
-		   java-pkg_jar-from jmf-bin
-		   java-pkg_jar-from jogl
-		   java-pkg_jar-from swing-layout-1
-		   java-pkg_jar-from swingx-0.9
-		   java-pkg_jar-from worldwind-0.6.134
-		   java-pkg_jar-from xstream
+	local i
+	epatch "${FILESDIR}/encoding-build-impl.patch"
+	epatch "${FILESDIR}/project-properties.patch"
+	rm -rf Required_Libraries/{Beanshell,Jama,Java_Media_Framework,JGoodies-Looks,JOGL,Netscape_JavaScript,Swing\ Layout\ Extensions,SwingX,worldwind,xstream}
+	for i in bsh jama jgoodies-looks-2.0 jmf-bin jogl swing-layout-1 \
+			 swingx-0.9 worldwind-0.6.134 xstream; do
+		java-pkg_jar-from "$i"
+	done
 }
 
 src_install () {
-			java-pkg_dojar dist/JSatTrak.jar
-			java-pkg_dojar Required_Libraries/substance/substance.jar
-			java-pkg_dojar Required_Libraries/substance/substance-swingx.jar
-			java-pkg_dojar Required_Libraries/JOGLUTILS/JOGLUTILS.jar
-			ewarn
-			ewarn "  jsattrak ebuild uses bundled binary substance.jar,"
-			ewarn "  and and substance-swingx.jar, a BSD-licensed LAF theme"
-			ewarn "  from https://substance.dev.java.net/"
-			ewarn "  and JOGLUTILS.jar from https://joglutils.dev.java.net/"
-			ewarn
-			java-pkg_dolauncher ${MY_PN} --main jsattrak.gui.JSatTrak
+	java-pkg_dojar dist/JSatTrak.jar
+	java-pkg_dojar Required_Libraries/substance/substance.jar
+	java-pkg_dojar Required_Libraries/substance/substance-swingx.jar
+	java-pkg_dojar Required_Libraries/JOGLUTILS/JOGLUTILS.jar
+	ewarn
+	ewarn "  jsattrak ebuild uses bundled binary substance.jar,"
+	ewarn "  and and substance-swingx.jar, a BSD-licensed LAF theme"
+	ewarn "  from https://substance.dev.java.net/"
+	ewarn "  and JOGLUTILS.jar from https://joglutils.dev.java.net/"
+	ewarn
+	java-pkg_dolauncher "${MY_PN}" --main jsattrak.gui.JSatTrak
 }
