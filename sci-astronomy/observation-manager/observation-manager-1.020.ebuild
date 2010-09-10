@@ -43,22 +43,14 @@ src_compile () {
 	cd "${S2}"
 	ant || die "obervation compilation failed"
 	cp ../gen/observation.jar "${S}/../lib/" || die
-	if use deepsky; then
-		ant -f extensions/deepSky/build.xml || "deepSky compilation failed"
-		cp ../gen/ext_DeepSky.jar "${S}/../lib/"
-	fi
-	if use imaging; then
-		ant -f extensions/imaging/build.xml || "imaging compilation failed"
-		cp ../gen/ext_Imaging.jar "${S}/../lib/"
-	fi
-	if use solarsystem; then
-		ant -f extensions/solarSystem/build.xml || "solarSystem compilation failed"
-		cp ../gen/ext_SolarSystem.jar "${S}/../lib/"
-	fi
-	if use variablestars; then
-		ant -f extensions/variableStars/build.xml || "variableStars compilation failed"
-		cp ../gen/ext_VariableStars.jar "${S}/../lib/"
-	fi
+	ant -f extensions/deepSky/build.xml || "deepSky compilation failed"
+	cp ../gen/ext_DeepSky.jar "${S}/../lib/"
+	ant -f extensions/imaging/build.xml || "imaging compilation failed"
+	cp ../gen/ext_Imaging.jar "${S}/../lib/"
+	ant -f extensions/solarSystem/build.xml || "solarSystem compilation failed"
+	cp ../gen/ext_SolarSystem.jar "${S}/../lib/"
+	ant -f extensions/variableStars/build.xml || "variableStars compilation failed"
+	cp ../gen/ext_VariableStars.jar "${S}/../lib/"
 
 	cd "${S}"
 	ant "${EANT_BUILD_TARGET}" || die "Compilation failed"
