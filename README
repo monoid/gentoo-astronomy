@@ -1,0 +1,6 @@
+EADME
+
+You can add this overlay through layman by:
+
+layman -f -o http://github.com/downloads/monoid/gentoo-astronomy/astronomy-layman.xml -a astronomy
+
