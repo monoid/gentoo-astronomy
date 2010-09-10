@@ -19,8 +19,8 @@ KEYWORDS="~amd64 ~x86"
 
 # Dependencies: xalan xercesImpl.jar xml-apis.jar
 DEPEND="app-arch/unzip
-		>=virtual/jdk-1.4"
-RDEPEND=">=virtual/jre-1.4"
+		>=virtual/jdk-1.5"
+RDEPEND=">=virtual/jre-1.5"
 
 S="${WORKDIR}/${MY_PN}/build"
 S2="${WORKDIR}/observation/build"
