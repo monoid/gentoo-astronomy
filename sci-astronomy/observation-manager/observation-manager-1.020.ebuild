@@ -12,8 +12,8 @@ DESCRIPTION="Observation manager."
 HOMEPAGE="http://observation.sourceforge.net/"
 SRC_URI="mirror://sourceforge/observation/ObservationManager_src/${PV}/${MY_PN}${PV}-src.zip"
 LICENSE="GPL"
-## skychart doesn't want to compile
-IUSE="deepsky imaging solarsystem variablestars"
+# IUSE="deepsky imaging solarsystem variablestars"
+IUSE=""
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
@@ -33,7 +33,7 @@ src_unpack () {
 
 src_install () {
 	mkdir -p "${D}/usr/share/${PN}/"
-	cp -r ../help "${D}/usr/share/${PN}/"
+	cp -r ../help ../catalog ../schema "${D}/usr/share/${PN}/"
 	java-pkg_dojar ../gen/${MY_PN}.jar
 	java-pkg_dojar ../lib/observation.jar
 	java-pkg_dojar ../lib/obsUtils.jar
