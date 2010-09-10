@@ -20,8 +20,9 @@
   </target>
 
   <target name="compile" depends="init">
-    <javac srcdir="main/java/" destdir="${build}/i18n"/>
-    <javac srcdir="." destdir="${build}/app" debug="no" optimize="yes">
+    <javac srcdir="main/java/" destdir="${build}/i18n" encoding="utf-8"/>
+    <javac srcdir="." destdir="${build}/app" debug="no" optimize="yes"
+           encoding="utf-8">
       <classpath refid="j3d"/>
       <include name="iridiumflares/**/*.java"/>
     </javac>
