@@ -10,8 +10,9 @@ MY_PN="observationManager"
 
 DESCRIPTION="Observation manager."
 HOMEPAGE="http://observation.sourceforge.net/"
-SRC_URI="mirror://sourceforge/observation/ObservationManager_src/${PV}/${MY_PN}${PV}-src.zip"
-LICENSE="GPL"
+SRC_URI="mirror://sourceforge/observation/ObservationManager_src/${PV}/${MY_PN}${PV}-src.zip
+		 mirror://sourceforge/observation/javaAPI_All_sources/2.0p2/observation2.0_p2-src.zip"
+LICENSE="GPL MIT"
 IUSE="deepsky imaging skychart solarsystem variablestars"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -22,15 +23,44 @@ DEPEND="app-arch/unzip
 RDEPEND=">=virtual/jre-1.4"
 
 S="${WORKDIR}/${MY_PN}/build"
+S2="${WORKDIR}/observation/build"
 EANT_BUILD_TARGET="build_all"
 
 src_unpack () {
-	unpack "${A}"
-	cd "${S}"
-	epatch "${FILESDIR}"/build-xml.patch
+	unpack "${MY_PN}${PV}-src.zip"
+	(cd "${S}"
+		epatch "${FILESDIR}"/build-xml.patch
+		rm ../lib/observation.jar
+		rm ../lib/ext_*.jar
+	)
+	mkdir observation
+	cd observation
+	unpack observation2.0_p2-src.zip
+	mkdir lib
 }
 
 src_compile () {
+	cd "${S2}"
+	ant || die "obervation compilation failed"
+	cp ../gen/observation.jar "${S}/../lib/" || die
+	if use deepsky; then
+		ant -f extensions/deepSky/build.xml || "deepSky compilation failed"
+		cp ../gen/ext_DeepSky.jar "${S}/../lib/"
+	fi
+	if use imaging; then
+		ant -f extensions/imaging/build.xml || "imaging compilation failed"
+		cp ../gen/ext_Imaging.jar "${S}/../lib/"
+	fi
+	if use solarsystem; then
+		ant -f extensions/solarSystem/build.xml || "solarSystem compilation failed"
+		cp ../gen/ext_SolarSystem.jar "${S}/../lib/"
+	fi
+	if use variablestars; then
+		ant -f extensions/variableStars/build.xml || "variableStars compilation failed"
+		cp ../gen/ext_VariableStars.jar "${S}/../lib/"
+	fi
+
+	cd "${S}"
 	ant "${EANT_BUILD_TARGET}" || die "Compilation failed"
 	if use deepsky; then
 		ant -buildfile extensions/deepSky/build.xml || die "deepSky compilation failed"
