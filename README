@@ -1,6 +1,11 @@
-EADME
+* Installation
 
 You can add this overlay through layman by:
 
 layman -f -o http://github.com/downloads/monoid/gentoo-astronomy/astronomy-layman.xml -a astronomy
 
+* Dependencies
+
+Some packages of this overlay depends on packages in java-overlay:
+
+layman -a java-overlay
