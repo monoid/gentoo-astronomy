@@ -4,6 +4,16 @@ You can add this overlay through layman by:
 
 layman -f -o http://github.com/downloads/monoid/gentoo-astronomy/astronomy-layman.xml -a astronomy
 
+Better way is to add custom overlay list to overlays in
+/etc/layman/layman.cfg: add
+
+  https://raw.github.com/monoid/gentoo-astronomy/master/astronomy.xml
+
+to `overlays` in /etc/layman/layman.cfg.  Then run
+
+  layman -S -a astronomy
+
+
 * Dependencies
 
 Some packages of this overlay depends on packages in java-overlay:
