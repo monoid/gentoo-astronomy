@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE repositories SYSTEM "/dtd/repositories.dtd">
+<repositories xmlns="" version="1.0">
+  <repo quality="experimental" status="unofficial">
+    <name><![CDATA[astronomy]]></name>
+    <description lang="en"><![CDATA[Astronomy software]]></description>
+    <homepage>https://github.com/monoid/gentoo-astronomy/</homepage>
+    <owner type="person">
+      <email>lispnik@gmail.com</email>
+      <name><![CDATA[Ivan Boldyrev]]></name>
+    </owner>
+    <source type="git">git://github.com/monoid/gentoo-astronomy.git</source>
+  </repo>
+</repositories>
